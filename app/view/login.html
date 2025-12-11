@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <!--begin::Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Login Page v2</title>
+    <title>Login</title>
 
     <!--begin::Accessibility Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -61,7 +61,72 @@
             </div>
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Dados com * são obrigatórios</p>
-                <form action="../index3.html" method="post">
+                <form id="form">
+
+                    <div class="modal fade" id="modalPreCadastro" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="modalPreCadastroLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalPreCadastroLabel">Pré-cadastro de usuário</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group mb-1">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="">
+                                    <label for="nome">Nome</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="sobrenome" name="sobrenome"
+                                        placeholder="">
+                                    <label for="sobrenome">Sobrenome</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="">
+                                    <label for="cpf">CPF</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="celular" name="celular" placeholder="">
+                                    <label for="celular">Telefone</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="whatsapp" name="whatsapp"
+                                        placeholder="">
+                                    <label for="whatsapp">Whatsapp</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="rg" name="rg" placeholder="">
+                                    <label for="rg">RG</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro"
+                                        placeholder="">
+                                    <label for="senhaCadastro">Senha</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                    <button type="button" id="salvarPrecadastro" class="btn btn-primary" data-bs-dismiss="modal">
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="input-group mb-1">
                         <div class="form-floating">
                             <input id="loginEmail" type="email" class="form-control" value="" placeholder="" />
@@ -73,14 +138,13 @@
                     </div>
                     <div class="input-group mb-1">
                         <div class="form-floating">
-                            <input id="loginPassword" type="password" class="form-control" placeholder="" />
-                            <label for="loginPassword">Informe sua senha *</label>
+                            <input id="senha" type="password" class="form-control" placeholder="" />
+                            <label for="senha">Informe sua senha *</label>
                         </div>
                         <div class="input-group-text">
                             <span class="bi bi-lock-fill"></span>
                         </div>
                     </div>
-                    <!--begin::Row-->
                     <div class="row">
                         <div class="col-8 d-inline-flex align-items-center">
                             <div class="form-check">
@@ -88,22 +152,21 @@
                                 <label class="form-check-label" for="flexCheckDefault"> Lembre me </label>
                             </div>
                         </div>
-                        <!-- /.col -->
                         <div class="col-4">
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Entrar</button>
+                                <button type="button" id="Login" class="btn btn-primary">
+                                    Entrar
+                                </button>
                             </div>
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!--end::Row-->
                 </form>
-
                 <div class="social-auth-links text-center mb-3 d-grid gap-2">
                     <p>- OR -</p>
-                    <a href="#" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modalPreCadastro">
                         <i class="bi bi-person-vcard-fill"></i> Pré-cadastro
-                    </a>
+                    </button>
                     <a href="#" class="btn btn-danger">
                         <i class="bi bi-file-lock2-fill"></i> Recuperar senha
                     </a>
@@ -118,6 +181,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/4.0.0-rc4/js/adminlte.min.js"></script>
+    {% include "script.html" %}
+    <script defer type="module" aria-modal="true" src="/js/login.js"></script>
 </body>
 
 </html>

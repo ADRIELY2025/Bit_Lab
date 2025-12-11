@@ -1,7 +1,7 @@
 import { Validate } from "./validate.js";
 import { Requests } from "./Requests.js";
 
-const preCadastro = document.getElementById('preCadastro');
+const preCadastro = document.getElementById('salvarPrecadastro');
 
 const Login = document.getElementById('Login');
 
