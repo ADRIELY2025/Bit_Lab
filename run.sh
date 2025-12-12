@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/jaiminho2/
+cd /home/bitlab/
 
 rm -R vendor/
 rm -R composer.lock
