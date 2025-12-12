@@ -37,6 +37,7 @@ class Login extends Base
                 'senha' => password_hash($form['senhaCadastro'], PASSWORD_DEFAULT)
             ];
             $IsInseted = InsertQuery::table('usuario')->save($dadosUsuario);
+            echo 'oi';die;
             if (!$IsInseted) {
                 return $this->SendJson(
                     $response,
@@ -147,4 +148,4 @@ class Login extends Base
             return $this->SendJson($response, ['status' => false, 'msg' => 'Restrição: ' . $e->getMessage(), 'id' => 0], 500);
         }
     }
-} 
+}

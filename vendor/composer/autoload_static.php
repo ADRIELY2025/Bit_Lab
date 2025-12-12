@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
+class ComposerStaticInit12d43f2610df926496b6bba98c450f92
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
@@ -43,6 +43,7 @@ class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'F' => 
         array (
@@ -102,6 +103,10 @@ class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
         'Fig\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/fig/http-message-util/src',
@@ -113,6 +118,7 @@ class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
     );
 
     public static $classMap = array (
+        'App\\source\\Email' => __DIR__ . '/../..' . '/app/source/Email.php',
         'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'FastRoute\\BadRouteException' => __DIR__ . '/..' . '/nikic/fast-route/src/BadRouteException.php',
@@ -134,6 +140,13 @@ class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
         'FastRoute\\RouteParser\\Std' => __DIR__ . '/..' . '/nikic/fast-route/src/RouteParser/Std.php',
         'Fig\\Http\\Message\\RequestMethodInterface' => __DIR__ . '/..' . '/fig/http-message-util/src/RequestMethodInterface.php',
         'Fig\\Http\\Message\\StatusCodeInterface' => __DIR__ . '/..' . '/fig/http-message-util/src/StatusCodeInterface.php',
+        'PHPMailer\\PHPMailer\\DSNConfigurator' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/DSNConfigurator.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
@@ -531,9 +544,9 @@ class ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd73bf28708122d69ff2e85ae3ac16993::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit12d43f2610df926496b6bba98c450f92::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit12d43f2610df926496b6bba98c450f92::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit12d43f2610df926496b6bba98c450f92::$classMap;
 
         }, null, ClassLoader::class);
     }

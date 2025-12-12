@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/bitlab/
+cd /home/jaiminho2/
 
 rm -R vendor/
 rm -R composer.lock
@@ -14,7 +14,7 @@ composer dump-autoload -o
 
 PG_USER="bitlab"
 PG_PASS="bitlab"
-PG_DB="bitlab"
+PG_DB="bitlab_db"
 ############################################################
 # 1) Criar usuário se não existir
 ############################################################
