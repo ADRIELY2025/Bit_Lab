@@ -12,7 +12,7 @@ use Slim\Routing\RouteCollectorProxy;
 
 $app->get('/', Home::class . ':home')->add(Middleware::autentication());
 $app->get('/home', Home::class . ':home')->add(Middleware::autentication());
-$app->get('/login', Login::class . ':login');
+$app->get('/login', Login::class . ':login')->add(Middleware::autentication());
 
 
 $app->group('/login', function (RouteCollectorProxy $group) {

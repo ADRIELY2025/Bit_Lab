@@ -10,10 +10,12 @@ class Email
     private $mail;
     private array $data;
     private $error;
-    public function __construct() 
-    { 
+    public function __construct()
+    {
         $this->data = [];
         $this->mail = new PHPMailer(true);
+        #Server settings
+        #$email->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $this->mail->isSMTP();
         $this->mail->isHTML();
         $this->mail->CharSet = PHPMailer::CHARSET_UTF8;
@@ -33,14 +35,13 @@ class Email
         $self->data['recipient_name'] = $recipient_name;
         $self->data['recipient_email'] = $recipient_email;
         return $self;
-      
     }
     public function attach(string $filePath, string $fileName): self
     {
         $this->data['attach'][$filePath] = $fileName;
-        return $this; 
+        return $this;
     }
-    public function send(string $from_name = CONFIG_SMTP_EMAIL['from_name'],string $from_email = CONFIG_SMTP_EMAIL['from_email']): bool
+    public function send(string $from_name = CONFIG_SMTP_EMAIL['from_name'], string $from_email = CONFIG_SMTP_EMAIL['from_email']): bool
     {
         try {
             $this->mail->setFrom($from_email, $from_name);
@@ -54,18 +55,17 @@ class Email
             }
             $this->mail->send();
             return true;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->error = $e;
-            return false; 
+            return false;
         }
 
 
 
-        return true; 
+        return true;
     }
     public function error(): ?\Exception
     {
         return $this->error;
     }
-
 }

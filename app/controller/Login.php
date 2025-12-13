@@ -37,7 +37,6 @@ class Login extends Base
                 'senha' => password_hash($form['senhaCadastro'], PASSWORD_DEFAULT)
             ];
             $IsInseted = InsertQuery::table('usuario')->save($dadosUsuario);
-            echo 'oi';die;
             if (!$IsInseted) {
                 return $this->SendJson(
                     $response,
@@ -97,6 +96,7 @@ class Login extends Base
                 ->where('celular', '=', $form['login'], 'or')
                 ->where('whatsapp', '=', $form['login'])
                 ->fetch();
+
             if (!isset($user) || empty($user) || count($user) <= 0) {
                 return $this->SendJson(
                     $response,

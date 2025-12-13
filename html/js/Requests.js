@@ -1,29 +1,22 @@
 class Requests {
     static form;
     static SetForm(id) {
-        const form = document.getElementById(id);
-        if (!form) {
-            throw new Error("Formulário não encontrado!!");
+        this.form = document.getElementById(id);
+        if (!this.form) {
+            throw new Error("O formulário não foi encontrado!");
         }
-        this.formData = new FormData(form);
         return this;
     }
     static async Post(url) {
-        this.option = {
+        const formData = new FormData(this.form);
+        const option = {
             method: 'POST',
-            body: this.formData,
-            mode: 'cors',
-            cache: 'default'
+            body: formData,
+            cache: 'default',
+            mode: 'cors'
         };
-        const response = await fetch(url, this.option);
-        return response.json();
-    }
-    static async Get(url) {
-        if (!url) {
-            throw new Error("Por favor informe o link para requisição!");
-        }
-        const response = await fetch(url);
-        return response.json();
+        const response = await fetch(url, option);
+        return await response.json();
     }
 }
 export { Requests };

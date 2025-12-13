@@ -2,8 +2,6 @@
 
 namespace app\middleware;
 
-use app\database\builder\SelectQuery;
-
 class Middleware
 {
     public static function autentication()
@@ -18,33 +16,24 @@ class Middleware
             # Captura a URI da página solicitada pelo usuário (ex: '/login', '/dashboard')
             $pagina = $request->getRequestTarget();
             # Verifica se o método da requisição é GET
-            if ($method === 'GET') {
-                # Verifica se o usuário NÃO está autenticado
-                # Condições: sessão vazia OU flag 'logado' false OU inexistente
-                $usuarioLogado = empty($_SESSION['usuario']) || empty($_SESSION['usuario']['logado']);
-                # Se usuário não está logado E não está tentando acessar a página de login
-                if ($usuarioLogado && $pagina !== '/login') {
-                    # Destroi a sessão para limpar qualquer dado residual
-                    session_destroy();
-                    # Redireciona para a página de login com status HTTP 302 (redirecionamento temporário)
-                    return $response->withHeader('Location', '/login')->withStatus(302);
+            if ($method == 'GET') {
+                # se o usuario esta logado, regenera o id da sessão para renovar o tempo de expiração do cookie. 
+                if (isset($_SESSION['usuario']) && boolval($_SESSION['usuario']['logado'])) {
+                    # o parametro true remove o arquivo de sessão antigo do servidor.
+                    session_regenerate_id(true);
                 }
-                # Se a página solicitada é a de login
-                if ($pagina === '/login') {
-                    # Verifica se o usuário JÁ está autenticado
-                    if (!$usuarioLogado) {
-                        # Se já está logado, redireciona para a home (evita acesso desnecessário ao login)
-                        return $response->withHeader('Location', '/')->withStatus(302);
-                    }
+                #Se ja esta logado e tenta acessar /login, redireciona para HOME.
+                if ($pagina == '/login' && isset($_SESSION['usuario']) && boolval($_SESSION['usuario']['logado'])) {
+                    return $response->withHeader('Location', HOME)->withStatus(302);
                 }
-
-                if (empty($_SESSION['usuario']['ativo']) or !$_SESSION['usuario']['ativo']) {
+                #sE NÃO ESTIVER LOGADO E NÃO ESTA TENTANDO ACESSAR /LOGIN, REDIRECIONA PARA LOGIN
+                if ((empty($_SESSION['usuario']) || !boolval($_SESSION['usuario']['logado'])) && $pagina != '/login') {
                     session_destroy();
-                    return $response->withHeader('Location', '/login')->withStatus(302);
+                    return $response->withHeader('Location', HOME . '/login')->withStatus(302);
                 }
             }
-            return $handler->handle($request);                  # Se não está logado, destroi qualquer sessão residual
+            return $response;
         };
-        return $middleware;                                   # Retorna a função middleware para ser usada nas rotas
+        return $middleware;
     }
 }
