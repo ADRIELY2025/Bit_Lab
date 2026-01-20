@@ -9,7 +9,7 @@ class Middleware
         # Retorna uma closure (função anônima) que será executada para cada requisição
         $middleware = function ($request, $handler) {
             #A linha $handler->handle($request) é como dizer: "Continua o processo!" - 
-            #ela passa a bola para o próximo jogador do time até chegar no gol (resposta final). 🎯
+            #ela passa a bola para o próximo jogador do time até chegar no gol (resposta final). 
             $response = $handler->handle($request);
             # Captura o método HTTP da requisição (GET, POST, PUT, DELETE, etc.)
             $method = $request->getMethod();
@@ -26,7 +26,7 @@ class Middleware
                 if ($pagina == '/login' && isset($_SESSION['usuario']) && boolval($_SESSION['usuario']['logado'])) {
                     return $response->withHeader('Location', HOME)->withStatus(302);
                 }
-                #sE NÃO ESTIVER LOGADO E NÃO ESTA TENTANDO ACESSAR /LOGIN, REDIRECIONA PARA LOGIN
+                #SE NÃO ESTIVER LOGADO E NÃO ESTA TENTANDO ACESSAR /LOGIN, REDIRECIONA PARA LOGIN.
                 if ((empty($_SESSION['usuario']) || !boolval($_SESSION['usuario']['logado'])) && $pagina != '/login') {
                     session_destroy();
                     return $response->withHeader('Location', HOME . '/login')->withStatus(302);

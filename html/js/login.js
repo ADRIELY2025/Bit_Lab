@@ -57,3 +57,7 @@ Login.addEventListener('click', async () => {
         console.log(error);
     }
 });
+document.getElementById("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("Enviando login...");
+});

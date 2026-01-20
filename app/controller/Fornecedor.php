@@ -31,12 +31,12 @@ class Fornecedor extends Base
     public function insert($request, $response)
     {
         try {
-             $nome = $_POST['nome_fantasia'];
+            $nome = $_POST['nome_fantasia'];
             $sobrenome = $_POST['sobrenome_razao'];
             $cpf = $_POST['cpf'];
             $rg = $_POST['rg_ie'];
-            
-            
+
+
             $FieldsAndValues = [
                 'nome_fantasia' => $nome,
                 'sobrenome_razao' => $sobrenome,
@@ -55,7 +55,8 @@ class Fornecedor extends Base
             //throw $th;
         }
     }
-    public function listfornecedor($request, $response){
+    public function listfornecedor($request, $response)
+    {
         #Captura todas a variaveis de forma mais segura VARIAVEIS POST.
         $form = $request->getParsedBody();
         #Qual a coluna da tabela deve ser ordenada.
@@ -66,30 +67,30 @@ class Fornecedor extends Base
         $start = $form['start'];
         #Limite de registro a serem retornados do banco de dados LIMIT
         $length = $form['length'];
-        $fields= [
-          0 => 'id',  
-          1 => 'nome_fantasia',  
-          2 => 'sobrenome_razao',  
-          3 => 'cpf_cnpj',  
-          4 => 'rg_ie',
+        $fields = [
+            0 => 'id',
+            1 => 'nome_fantasia',
+            2 => 'sobrenome_razao',
+            3 => 'cpf_cnpj',
+            4 => 'rg_ie',
         ];
         #Capturamos o nome do campo a ser odernado.
         $orderField = $fields[$order];
         #O termo pesquisado
-        $term = $form ['search']['value'];
+        $term = $form['search']['value'];
         $query = SelectQuery::select('id,nome_fantasia,sobrenome_razao,cpf_cnpj,rg_ie')->from('fornecedor');
         if (!is_null($term) && ($term !== '')) {
             $query->where('nome_fantasia', 'ilike', "%{$term}%", 'or')
-            ->where('sobrenome_razao', 'ilike', "%{$term}%", 'or')
-            ->where('cpf_cnpj', 'ilike', "%{$term}%", 'or')
-            ->where('rg_ie', 'ilike', "%{$term}%");
+                ->where('sobrenome_razao', 'ilike', "%{$term}%", 'or')
+                ->where('cpf_cnpj', 'ilike', "%{$term}%", 'or')
+                ->where('rg_ie', 'ilike', "%{$term}%");
         }
         $fornecedor = $query
-        ->order($orderField, $orderType)
-        ->limit($length, $start)
-        ->fetchAll();
+            ->order($orderField, $orderType)
+            ->limit($length, $start)
+            ->fetchAll();
         $fornecedorData = [];
-        foreach($fornecedor as $key => $value) {
+        foreach ($fornecedor as $key => $value) {
             $fornecedorData[$key] = [
                 $value['id'],
                 $value['nome_fantasia'],
@@ -113,6 +114,5 @@ class Fornecedor extends Base
         return $response
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
-        
     }
 }

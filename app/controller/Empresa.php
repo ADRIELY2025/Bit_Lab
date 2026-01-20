@@ -35,8 +35,8 @@ class Empresa extends Base
             $sobrenome = $_POST['sobrenome'];
             $cpf = $_POST['cpf'];
             $rg = $_POST['rg'];
-            
-            
+
+
             $FieldsAndValues = [
                 'nome_fantasia' => $nome,
                 'sobrenome_razao' => $sobrenome,
@@ -55,7 +55,8 @@ class Empresa extends Base
             //throw $th;
         }
     }
-        public function listempresa($request, $response){
+    public function listempresa($request, $response)
+    {
         #Captura todas a variaveis de forma mais segura VARIAVEIS POST.
         $form = $request->getParsedBody();
         #Qual a coluna da tabela deve ser ordenada.
@@ -66,30 +67,30 @@ class Empresa extends Base
         $start = $form['start'];
         #Limite de registro a serem retornados do banco de dados LIMIT
         $length = $form['length'];
-        $fields= [
-          0 => 'id',  
-          1 => 'nome_fantasia',  
-          2 => 'sobrenome_razao',  
-          3 => 'cpf_cnpj',  
-          4 => 'rg_ie',
+        $fields = [
+            0 => 'id',
+            1 => 'nome_fantasia',
+            2 => 'sobrenome_razao',
+            3 => 'cpf_cnpj',
+            4 => 'rg_ie',
         ];
         #Capturamos o nome do campo a ser odernado.
         $orderField = $fields[$order];
         #O termo pesquisado
-        $term = $form ['search']['value'];
+        $term = $form['search']['value'];
         $query = SelectQuery::select('id,nome_fantasia,sobrenome_razao,cpf_cnpj,rg_ie')->from('empresa');
         if (!is_null($term) && ($term !== '')) {
             $query->where('nome_fantasia', 'ilike', "%{$term}%", 'or')
-            ->where('sobrenome_razao', 'ilike', "%{$term}%", 'or')
-            ->where('cpf_cnpj', 'ilike', "%{$term}%", 'or')
-            ->where('rg_ie', 'ilike', "%{$term}%");
+                ->where('sobrenome_razao', 'ilike', "%{$term}%", 'or')
+                ->where('cpf_cnpj', 'ilike', "%{$term}%", 'or')
+                ->where('rg_ie', 'ilike', "%{$term}%");
         }
         $empresa = $query
-        ->order($orderField, $orderType)
-        ->limit($length, $start)
-        ->fetchAll();
+            ->order($orderField, $orderType)
+            ->limit($length, $start)
+            ->fetchAll();
         $empresaData = [];
-        foreach($empresa as $key => $value) {
+        foreach ($empresa as $key => $value) {
             $empresaData[$key] = [
                 $value['id'],
                 $value['nome_fantasia'],
