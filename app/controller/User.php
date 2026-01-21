@@ -32,22 +32,21 @@ class User extends Base
     public function insert($request, $response)
     {
         try {
+
             $nome = $_POST['nome'];
             $sobrenome = $_POST['sobrenome'];
             $cpf = $_POST['cpf'];
             $rg = $_POST['rg'];
             $email = $_POST['email'];
             $celular = $_POST['celular'];
-            $senha = $_POST['senha'];
-
-
+           # $senha = $_POST['senha'];
             $FieldsAndValues = [
                 'nome' => $nome,
                 'sobrenome' => $sobrenome,
                 'cpf' => $cpf,
                 'rg' => $rg,
-                'email' => $email,
-                'telefone' => $celular,
+                #'email' => $email,
+                #'telefone' => $celular,
                 #'senha' => $senha
             ];
 
@@ -149,4 +148,5 @@ class User extends Base
         /*
         */
     }
+
 }

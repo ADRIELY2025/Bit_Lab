@@ -31,10 +31,10 @@ class Empresa extends Base
     public function insert($request, $response)
     {
         try {
-            $nome = $_POST['nome'];
-            $sobrenome = $_POST['sobrenome'];
-            $cpf = $_POST['cpf'];
-            $rg = $_POST['rg'];
+            $nome = $_POST['nome_fantasia'];
+            $sobrenome = $_POST['sobrenome_razao'];
+            $cpf = $_POST['cpf_cnpj'];
+            $rg = $_POST['rg_ie'];
 
 
             $FieldsAndValues = [
@@ -97,8 +97,8 @@ class Empresa extends Base
                 $value['sobrenome_razao'],
                 $value['cpf_cnpj'],
                 $value['rg_ie'],
-                "<button class='btn btn-warning'>Editar</button>
-                <button class='btn btn-danger'>Excluir</button>"
+                "<button class='btn btn-warning'>Editar</button>",
+                "<button class='btn btn-danger'>Excluir</button>"
             ];
         }
         $data = [
@@ -114,7 +114,6 @@ class Empresa extends Base
         return $response
             ->withHeader('Content-Type', 'application/json')
             ->withStatus(200);
-        /*
-        */
+      
     }
 }
