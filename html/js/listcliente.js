@@ -1,6 +1,6 @@
 import { Requests } from "./Requests.js";
 
-const tabela = new $('#tabela').DataTable({
+const tabela = new $('#tabela').DataTables({
     paging: true,
     lengthChange: true,
     searching: true,

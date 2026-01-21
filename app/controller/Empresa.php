@@ -32,9 +32,9 @@ class Empresa extends Base
     {
         try {
             $nome = $_POST['nome_fantasia'];
-            $sobrenome = $_POST['sobrenome_razao'];
-            $cpf = $_POST['cpf_cnpj'];
-            $rg = $_POST['rg_ie'];
+            $sobrenome = $_POST['sobrenome_razao '];
+            $cpf = $_POST['cpf'];
+            $rg = $_POST['rg'];
 
 
             $FieldsAndValues = [

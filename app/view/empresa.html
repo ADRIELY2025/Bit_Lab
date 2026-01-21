@@ -29,7 +29,13 @@
           <div class="valid-feedback">Válido!</div>
           <div class="invalid-feedback">Informe um CPF ou CNPJ válido.</div>
         </div>
-
+            <div class="col-md-6">
+                <label for="data_nascimento_abertura" class="form-label">Data de Nascimento/Abertura</label>
+                <input type="date" class="form-control" id="data_nascimento_abertura" name="data_nascimento_abertura"
+                    placeholder="Digite sua data de nascimento" required data-rule-validDate="true" value="{{ empresas.data_nascimento_abertura }}">
+                    <div class="invalid-feedback">
+                        Por favor digite uma data válida.
+                </div>
         <div class="col-md-6">
           <label for="rg_ie" class="form-label">RG ou Inscrição Estadual (IE)</label>
           <input type="text" class="form-control" id="rg_ie" name="rg_ie" placeholder="Digite seu RG ou IE" required>

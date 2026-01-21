@@ -1,4 +1,4 @@
-const tabela = new $('#tabela').DataTable({
+const tabela = new $('#tabela').DataTables({
     paging: true,
     lengthChange: true,
     searching: true,
@@ -19,3 +19,10 @@ const tabela = new $('#tabela').DataTable({
         type: 'POST'
     }
 });
+async function deletar(id) {
+
+    document.getElementById('id').value = id;
+    const response = await Requests.SetForm('form').Post('/fornecedor/delete');
+    console.log(response);
+}
+window.deletar = deletar;
