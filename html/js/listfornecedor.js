@@ -1,4 +1,4 @@
-const tabela = new $('#tabela').DataTables({
+const tabela = new $('#tabela').DataTable({
     paging: true,
     lengthChange: true,
     searching: true,
@@ -19,10 +19,41 @@ const tabela = new $('#tabela').DataTables({
         type: 'POST'
     }
 });
-async function deletar(id) {
-
-    document.getElementById('id').value = id;
-    const response = await Requests.SetForm('form').Post('/fornecedor/delete');
-    console.log(response);
+async function Delete(id) {
+    const formData = new FormData();
+    formData.append('id', id);
+    
+    const response = await fetch('/fornecedor/delete', {
+        method: 'POST',
+        body: formData
+    });
+    
+    const data = await response.json();
+    
+    if (!data.status) {
+        Swal.fire({
+            title: "Erro ao remover!",
+            icon: "error",
+            html: data.msg,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+        return;
+    }
+    Swal.fire({
+        title: "Removido com sucesso!",
+        icon: "success",
+        html: data.msg,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+    tabela.ajax.reload();
 }
-window.deletar = deletar;
+window.Delete = Delete;
+//DataTables.SetId('tabela').Post('/user/listuser');

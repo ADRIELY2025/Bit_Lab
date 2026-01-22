@@ -1,48 +1,48 @@
 {% extends "main.html" %}
-
 {% block main %}
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <form id="form" class="row g-3 needs-validation" novalidate>
-
-        <div class="col-md-4">
-          <label for="nome_fantasia" class="form-label">Nome ou Nome Fantasia</label>
-          <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia"
-            placeholder="Digite seu Nome ou Nome Fantasia" required>
-          <div class="valid-feedback">Válido!</div>
-          <div class="invalid-feedback">Por favor, informe o nome.</div>
-        </div>
-
-        <div class="col-md-4">
-          <label for="sobrenome_razao" class="form-label">Sobrenome ou Razão Social</label>
-          <input type="text" class="form-control" id="sobrenome_razao" name="sobrenome_razao"
-            placeholder="Digite seu Sobrenome ou Razão Social" required>
-          <div class="valid-feedback">Válido!</div>
-          <div class="invalid-feedback">Por favor, informe o sobrenome ou razão social.</div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="cpf_cnpj" class="form-label">CPF ou CNPJ</label>
-          <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" placeholder="Digite seu CPF ou CNPJ"
-            required>
-          <div class="valid-feedback">Válido!</div>
-          <div class="invalid-feedback">Informe um CPF ou CNPJ válido.</div>
-        </div>
-
-        <div class="col-md-6">
-          <label for="rg_ie" class="form-label">RG ou Inscrição Estadual (IE)</label>
-          <input type="text" class="form-control" id="rg_ie" name="rg_ie" placeholder="Digite seu RG ou IE" required>
-          <div class="valid-feedback">Válido!</div>
-          <div class="invalid-feedback">Por favor, preencha este campo.</div>
-        </div>
-
-        <div class="col-12">
-          <button class="btn btn-primary" name="insert" type="button" id="insert">Salvar</button>
-        </div>
-      </form>
+    <div class="row">
+        <form class="row g-3 needs-validation" id="form">
+            <input type="hidden" id="acao" name="acao" value="{{ acao }}">
+            <input type="hidden" id="id" name="id" value="{{ id }}">
+            <div class="card-header">
+            
+            </div>
+            <div class="col-md-4">
+                <label for="nome_fantasia" class="form-label">Nome Fantasia</label>
+                <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" placeholder="Digite seu nome_fantasia." required value="{{ fornecedor.nome_fantasia }}">
+            </div>
+            <div class="col-md-4">
+                <label for="sobrenome_razao" class="form-label">Razão Social</label>
+                <input type="text" class="form-control" id="sobrenome_razao" name="sobrenome_razao"
+                placeholder="Por favor digite seu sobrenome_razao" required value="{{ fornecedor.sobrenome_razao }}">
+            </div>
+            <div class="col-md-4">
+                <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+                <input type="text" class="form-control" id="cpf_cnpj" name="cpf_cnpj" placeholder="Por favor digite seu cpf_cnpj"
+                required data-rule-cpfOrCnpj="true" value="{{ fornecedor.cpf_cnpj }}">
+                <small class="form-text text-muted">Digite um CPF (000.000.000-00) ou CNPJ (00.000.000/0000-00)</small>
+            </div>
+            <div class="col-md-6">
+                <label for="rg_ie" class="form-label">RG/IE</label>
+                <input type="text" class="form-control" id="rg_ie" name="rg_ie" placeholder="Digite seu rg_ie" required data-rule-rg="true" value="{{ fornecedor.rg_ie }}">
+                <div class="invalid-feedback">
+                    RG/IE inválido
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="data_nascimento_abertura" class="form-label">Data de Nascimento/Abertura</label>
+                <input type="date" class="form-control" id="data_nascimento_abertura" name="data_nascimento_abertura"
+                    placeholder="Digite sua data de nascimento" required data-rule-validDate="true" value="{{ fornecedor.data_nascimento_abertura }}">
+                    <div class="invalid-feedback">
+                        Por favor digite uma data válida.
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="button" id="insert">Salvar</button> <a href="/fornecedor/lista" class="btn btn-outline-danger">Voltar</a>
+            </div>
+        </form>
     </div>
-  </div>
 </div>
 {% endblock %}
 

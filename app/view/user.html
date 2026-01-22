@@ -1,63 +1,55 @@
 {% extends "main.html" %}
 {% block main %}
 <div class="container">
-    <div class="row">
-        <form class="row g-3 needs-validation" id="form">
+    <form id="form">
+        <!-- Define a ação a ser executada C = cadastro, E = Editar -->
+        <input type="hidden" id="acao" name="acao" value="{{ acao }}">
+        <input type="hidden" id="id" name="id" value="{{id}}">
+        <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+               
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="perfil-tab"
+                tabindex="0">
 
-            <div class="col-md-4">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome." required>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome."
+                            required autofocus value="{{usuario.nome}}">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="sobrenome" class="form-label">Sobre nome</label>
+                        <input type="text" class="form-control" id="sobrenome" name="sobrenome"
+                            placeholder="Por favor digite seu sobre nome" required value="{{usuario.sobrenome}}">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf"
+                            placeholder="Por favor digite seu CPF" required data-rule-cpf="true" value="{{usuario.cpf}}">
+                        <small class="form-text text-muted">Digite um CPF (000.000.000-00)</small>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="rg" class="form-label">RG</label>
+                        <input type="text" class="form-control" id="rg" name="rg" placeholder="Por favor digite seu RG"
+                            required data-rule-rg="true" value="{{usuario.rg}}">
+                    </div>
+                    <div class="col-md-4" id="campo_senha">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha"
+                            placeholder="Por favor digite sua senha" required>
+                        </div>
+                    
+                    <div class="col-12">
+                        <button class="btn btn-success" type="button" id="insert">Salvar</button>
+                    </div>
+            <div class="card-header">
+                    <a href="/usuario/lista" class="btn btn-outline-danger">Voltar</a>
             </div>
-
-            <div class="col-md-4">
-                <label for="sobrenome" class="form-label">Sobrenome</label>
-                <input type="text" class="form-control" id="sobrenome" name="sobrenome"
-                    placeholder="Por favor digite seu sobrenome" required>
-            </div>
-
-            <div class="col-md-4">
-                <label for="cpf" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Por favor digite seu CPF"
-                    required>
-            </div>
-
-            <div class="col-md-6">
-                <label for="rg" class="form-label">RG</label>
-                <input type="text" class="form-control" id="rg" name="rg" placeholder="Digite seu RG" required>
-            </div>
-
-            <div class="col-md-6">
-                <label for="celular" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="celular" name="celular" placeholder="Digite seu Telefone"
-                    required>
-            </div>
-
-            <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu Email"
-                    required>
-            </div>
-
-            <div class="col-md-3">
-                <label for="validationCustom05" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="validationCustom05" required>
-            </div>
-
-            <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="invalidCheck" required>
-                    <label class="form-check-label" for="invalidCheck">
-                        Aceito os termos
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-12">
-                 <button class="btn btn-primary" name="insert" type="button"  id="insert">Salvar</button>
-            </div>
-
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
 
